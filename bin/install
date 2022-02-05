@@ -78,6 +78,7 @@ install() {
 
   local -r bin_install_path="${install_path}/bin"
   local -r download_url="$(get_download_url "${version}" "zip")"
+  echo "$ASDF_HASHICORP_OVERWRITE_ARCH"
   local -r download_path="${TMP_DOWNLOAD_DIR}/$(get_zip_filename "${version}")"
 
   echo "Downloading ${toolname} version ${version} from ${download_url}"
@@ -113,8 +114,6 @@ get_platform() {
 }
 
 get_arch() {
-  echo "${ASDF_HASHICORP_OVERWRITE_ARCH}"
-  echo "WHY"
   local -r machine="$(uname -m)"
   local -r upper_toolname=$(echo "${toolname}" | tr '[:upper:]' '[:lower:]')
   local -r tool_specific_arch_override="ASDF_HASHICORP_OVERWRITE_ARCH_${upper_toolname}"
